@@ -1,7 +1,7 @@
 # marktext-chinese-language-pack
 Simplified Chinese language pack for marktext
 
-mark 简体中文汉化包
+marktext 简体中文汉化包
 
 
 只是做了简单的字符串替换，对官方发布的二进制可执行程序没做任何修改，可放心使用。
