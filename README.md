@@ -10,3 +10,5 @@ marktext 简体中文汉化包
 修复MacOS下导入文档与图床上传失败的Bug
 
 链接: https://pan.baidu.com/s/1w3c-2zfIK5dxuQOVvC_9NQ 提取码: snss 
+
+多国语版本即将发布，敬请关注。。。
