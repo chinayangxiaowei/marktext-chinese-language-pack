@@ -125,11 +125,12 @@ function initMainEnDict(fileName:string, langRootPath:string) : string[] {
     if (enDict.length==0){
         const excludeDict = readStringArrayFromFile( path.join(langRootPath, "translate-resources/exclude.txt"))
         enDict = searchLabelsFromFile(fileName, excludeDict)
+        if (enDict.length>0){
+          writeStringArrayToFile(enDictFileName, enDict)
+        }
     }
 
-    if (enDict.length>0){
-        writeStringArrayToFile(enDictFileName, enDict)
-    }else{
+    if (enDict.length==0){
         console.log("error in initMainEnDict, enDict is Empty.")
     }
     return enDict
