@@ -1,0 +1,40 @@
+Cadmium Light
+Dark
+Graphite Light
+Material Dark
+One Dark
+Ulysses Light
+Graphite
+Ulysses
+Afrikaans
+Català
+Česky
+Dansk
+Deutsch
+English (en-AU)
+English (en-CA)
+English (en-GB)
+English (en-US)
+Español
+Eesti
+Føroyskt
+Français
+Hhrvatski
+Magyar
+Bahasa Indonesia
+Italiano
+Lietuvių
+Latviešu
+Norsk
+Nederlands
+Polski
+Português (pt-BR)
+Português (pt-PT)
+Română
+Cрпски језик (Latin)
+Slovenčina (sk-SK)
+Slovenščina (sl-SI)
+Shqip
+Svenska
+Türkçe
+Tiếng Việt
