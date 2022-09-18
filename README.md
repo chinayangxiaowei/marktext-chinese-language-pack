@@ -11,7 +11,7 @@ marktext 简体中文汉化包
 
 ###### 当前状态：
 
-        本预计发布多国语版本，考虑修改地方太多后期与官方代码同步将是非常繁重的任务，正在寻求一个更好的源码同步方案，暂不发布多国语版本。不过先把资源翻译代码开源，由兴趣的可以尝试自己编译所需要的操作系统版本。
+        本预计发布多国语版本，考虑修改地方太多后期与官方代码同步将是非常繁重的任务，正在寻求一个更好的源码同步方案，暂不发布多国语版本。不过先把资源翻译代码开源，有兴趣的可以尝试自己编译所需要的操作系统版本。
 
         如果其它国家的朋友也需要自己的语言包，可以翻译translate-resources/main_dict_zh-cn.txt、translate-resources/renderer_dict_zh-cn.txt文件，并命名为translate-resources/main_dict_[lang].txt, translate-resources/renderer_dict_[lang].txt并编辑，编译时请设置环境变量lang=你的语言缩写，如果你希望分享你的翻译成果，可以在[Issues](https://github.com/chinayangxiaowei/marktext-chinese-language-pack/issues)提交报告。
 
@@ -21,9 +21,7 @@ marktext 简体中文汉化包
 
 ###### 编译方法：
 
-1. 复制代码到marktext源码目录会，
-
-```
+```bash
 1. 复制项目文件夹文件到marktext官方源码目录，其中“\.electron-vue\build.js”文件会被替换。
 2. 安装项目依赖
 yarn install
