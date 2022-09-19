@@ -16,7 +16,7 @@ function doTranslate() {
   if (process.env['lang']){
     toLang = process.env['lang']
   }
-  if (toLang == '') return
+  if (toLang == '') return true
   require('ts-node/register')
   const { markTextAsarTranslate } = require('../marktext_asar_translate')
   console.log(process.env['lang'])
@@ -26,7 +26,7 @@ function doTranslate() {
   const outMainJsFileName = path.join(jsRootPath, './main.js')
   const rendererJsFileName = path.join(jsRootPath, './renderer.js')
   const outRendererJsFileName = path.join(jsRootPath, './renderer.js')
-  markTextAsarTranslate(longRootPath, toLang, mainJsFileName, outMainJsFileName, rendererJsFileName, outRendererJsFileName)
+  return markTextAsarTranslate(longRootPath, toLang, mainJsFileName, outMainJsFileName, rendererJsFileName, outRendererJsFileName)
 }
 
 
@@ -99,7 +99,9 @@ async function build () {
     .then(() => {
 
       console.log('do translate process')
-      doTranslate()
+      if (!doTranslate()){
+        process.exit(1)
+      }
 
       process.stdout.write('\x1B[2J\x1B[0f')
       console.log(`\n\n${results}`)
