@@ -8,12 +8,13 @@ marktext 简体中文汉化包
 
 1. 通过资源替换方式，修复MacOS下导入文档与图床上传失败的Bug；
 2. 加入自动翻译脚本，在编译的时候自动编译。
+3. 优化main.js中Label标记的搜索与匹配
 
 ###### 当前状态：
 
         本预计发布多国语版本，考虑修改地方太多后期与官方代码同步将是非常繁重的任务，正在寻求一个更好的源码同步方案，暂不发布多国语版本。不过先把资源翻译代码开源，有兴趣的可以尝试自己编译所需要的操作系统版本。
 
-        如果其它国家的朋友也需要自己的语言包，可以翻译translate-resources/main_dict_zh-cn.txt、translate-resources/renderer_dict_zh-cn.txt文件，并命名为translate-resources/main_dict_[lang].txt, translate-resources/renderer_dict_[lang].txt并编辑，编译时请设置环境变量lang=你的语言缩写，如果你希望分享你的翻译成果，可以在[Issues](https://github.com/chinayangxiaowei/marktext-chinese-language-pack/issues)提交报告。
+        如果其它国家的朋友也需要自己的语言包，可以翻译translate-resources/xxx_zh-cn.txt文件并命名为translate-resources/xxx_[lang].txt，编译时请设置环境变量lang=你的语言缩写，如果你希望分享你的翻译成果，可以在[Issues](https://github.com/chinayangxiaowei/marktext-chinese-language-pack/issues)提交报告。
 
 ###### 下载地址：
 

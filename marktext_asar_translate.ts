@@ -45,42 +45,81 @@ function searchLabelsFromFile( fileName:string, exclude: void|string[]) : string
     return labels;
 }
 
-function replaceLabelsFromFile( fileName:string, enDict: string[], toDict: string[]) : string {
+function replaceLabelsFromFile( fileName:string, toDict: string[]) : string {
     let content:string = ""
-    if (enDict.length == toDict.length){
-        if (fs.existsSync(fileName)) {
-            let buffer = fs.readFileSync(fileName, "utf-8")
-            let pat = /(label):"(.*?)"/gms
-            content = buffer.replace(pat, (match, key, value) => {
-                const idx = enDict.indexOf(value)
-                if (idx != -1) {
-                    return key + ':"' + toDict[idx] + '"'
-                }
-                return match
-            })
+    let toKeys:string[] = []
+    let toVals:string[] = []
+    for (let i = 0; i < toDict.length; i++) {
+      if (toDict[i].trim().length > 0) {
+        const tow_cell = toDict[i].split('|')
+        if (tow_cell.length == 2 ){
+          toKeys.push(tow_cell[0])
+          toVals.push(tow_cell[1])
         }
+      }
     }
+    if (fs.existsSync(fileName)) {
+        let buffer = fs.readFileSync(fileName, "utf-8")
+        let pat = /(label):"(.*?)"/gms
+        content = buffer.replace(pat, (match, key, value) => {
+            const idx = toKeys.indexOf(value)
+            if (idx != -1) {
+                return key + ':"' + toVals[idx] + '"'
+            }
+            return match
+        })
+    }
+
     return content
 }
 
-function replaceMain(fileName:string, langRootPath:string, enDict:string[], toLang:string, outFileName:string) : boolean {
-    if (enDict.length == 0){
-        return false
-    }
-    const toDictFileName = path.join(langRootPath, "translate-resources/main_dict_" + toLang + ".txt")
-    const toDict = readStringArrayFromFile(toDictFileName)
+function replaceMainLabelDict(fileName:string, langRootPath:string, toDict:string[], toLang:string, outFileName:string) : boolean {
     if (toDict.length == 0){
-        console.log("error in replaceMain, readStringArrayFromFile failed, not found "+ toDictFileName +".")
         return false
     }
-    const main_content = replaceLabelsFromFile( fileName, enDict, toDict);
+    const main_content = replaceLabelsFromFile( fileName, toDict);
     if (main_content.length>0) {
         fs.writeFileSync( outFileName, main_content )
         return true
     }else{
-        console.log("error in replaceMain,  replaceLabelsFromFile failed.")
+        console.log("error in replaceMainLabelDict,  replaceLabelsFromFile failed.")
     }
     return false
+}
+
+
+function replaceMain(fileName:string, langRootPath:string, toLang:string, outFileName:string): boolean {
+  const toDictFileName = path.join(langRootPath, "translate-resources/main_dict_" + toLang + ".txt")
+  const toDict = readStringArrayFromFile(toDictFileName)
+  if (toDict.length == 0){
+    console.log("error in replaceMain, readStringArrayFromFile failed, not found "+ toDictFileName +".")
+    return false
+  }
+
+  if (!fs.existsSync(fileName)) {
+    console.log("error in replaceMain, not found "+ fileName +".")
+    return false
+  }
+
+  let content = fs.readFileSync(fileName, "utf-8")
+
+  for (let i = 0; i < toDict.length; i++) {
+    if (toDict[i].trim().length > 0) {
+      const tow_cell = toDict[i].split('|')
+      if (tow_cell.length == 2 ){
+        content = content.replace(tow_cell[0], tow_cell[1])
+      }
+    }
+  }
+
+  if (content.length>0) {
+    fs.writeFileSync( outFileName, content )
+    return true
+  }else{
+    console.log("error in replaceMain,  readFileSync or replace failed.")
+  }
+
+  return false
 }
 
 function replaceRenderer(fileName:string, langRootPath:string, toLang:string, outFileName:string): boolean {
@@ -118,39 +157,68 @@ function replaceRenderer(fileName:string, langRootPath:string, toLang:string, ou
 }
 
 
-function initMainEnDict(fileName:string, langRootPath:string) : string[] {
-    const enDictFileName = path.join(langRootPath, "translate-resources/main_dict_en.txt")
-    let enDict = readStringArrayFromFile(enDictFileName)
+function initMainLabelDict(fileName:string, langRootPath:string, toLang:string) : string[] {
 
-    if (enDict.length==0){
-        const excludeDict = readStringArrayFromFile( path.join(langRootPath, "translate-resources/exclude.txt"))
-        enDict = searchLabelsFromFile(fileName, excludeDict)
-        if (enDict.length>0){
-          writeStringArrayToFile(enDictFileName, enDict)
+    const toDictFileName = path.join(langRootPath, "translate-resources/main_label_dict_" + toLang + ".txt")
+    let toDict = readStringArrayFromFile(toDictFileName)
+    let toKeys:string[] = []
+    for (let i = 0; i < toDict.length; i++) {
+      if (toDict[i].trim().length > 0) {
+        const tow_cell = toDict[i].split('|')
+        if (tow_cell.length == 2 ){
+          toKeys.push(tow_cell[0])
         }
+      }
     }
 
-    if (enDict.length==0){
-        console.log("error in initMainEnDict, enDict is Empty.")
+    const excludeDict = readStringArrayFromFile( path.join(langRootPath, "translate-resources/exclude.txt"))
+    let enDict = searchLabelsFromFile(fileName, excludeDict)
+    if (enDict.length>0){
+      let nAdd = 0
+      for (let i=0; i<enDict.length; i++){
+        if (toKeys.indexOf(enDict[i]) == -1){
+          toDict.push(enDict[i]+'|'+enDict[i])
+          toKeys.push(enDict[i])
+          nAdd++
+        }
+      }
+      if (nAdd!=0){
+        //UI Label change, need to rewrite.
+        writeStringArrayToFile(toDictFileName, toDict)
+      }
     }
-    return enDict
+
+    if (toDict.length==0){
+        console.log("warring in initMainLabelDict, toDict is Empty.")
+    }
+    return toDict
 }
 
-export function markTextAsarTranslate(langRootPath:string, toLang:string, mainJsFileName:string, outMainJsFileName:string, rendererJsFileName:string, outRendererJsFileName:string): void {
+export function markTextAsarTranslate(langRootPath:string, toLang:string, mainJsFileName:string, outMainJsFileName:string, rendererJsFileName:string, outRendererJsFileName:string): boolean {
 
-    const enDict = initMainEnDict(mainJsFileName, langRootPath)
+  const toDict = initMainLabelDict(mainJsFileName, langRootPath, toLang)
 
-    if (enDict.length>0){
-        if (replaceMain(mainJsFileName, langRootPath,  enDict, toLang, outMainJsFileName)){
-            console.log("replaceMain success.")
-        }else{
-            console.log("replaceMain failed.")
-        }
-    }
-
-    if (replaceRenderer(rendererJsFileName, langRootPath,  toLang, outRendererJsFileName)){
-        console.log("replaceRenderer success.")
+  if (toDict.length>0){
+    if (replaceMainLabelDict(mainJsFileName, langRootPath,  toDict, toLang, outMainJsFileName)){
+      console.log("replaceMainLabelDict success.")
     }else{
-        console.log("replaceRenderer failed.")
+      console.log("replaceMainLabelDict failed.")
+      return false
     }
+  }
+
+  if (replaceMain(mainJsFileName, langRootPath,  toLang, outMainJsFileName)){
+    console.log("replaceMain success.")
+  }else{
+    console.log("replaceMain failed.")
+    return false
+  }
+
+  if (replaceRenderer(rendererJsFileName, langRootPath,  toLang, outRendererJsFileName)){
+    console.log("replaceRenderer success.")
+  }else{
+    console.log("replaceRenderer failed.")
+    return false
+  }
+  return true
 }

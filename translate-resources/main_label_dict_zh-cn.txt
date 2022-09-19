@@ -1,0 +1,121 @@
+&Edit|编辑
+Undo|撤销
+Redo|重做
+Cut|剪切
+Copy|复制
+Paste|粘贴
+Copy as Markdown|复制为 Markdown
+Copy as HTML|复制为 HTML
+Paste as Plain Text|粘贴为纯文本
+Select All|全选
+Duplicate|复写到新段落
+Create Paragraph|新建段落
+Delete Paragraph|删除段落
+Find|查找
+Find Next|查找下一个
+Find Previous|查找上一个
+Replace|替换
+Find in Folder|在文件夹中查找
+Screenshot|截屏
+Line Ending|行结束符号
+Carriage return and line feed (CRLF)|回车换行 (CRLF)
+Line feed (LF)|换行 (LF)
+Edit|编辑
+&File|文件
+New Tab|新建标签页
+New Window|新建窗口
+Open File...|打开文件...
+Open Folder...|打开文件夹...
+Open Recent|最近使用的文件
+Clear Recently Used|清空最近文件列表
+Save|保存
+Save As...|另存为...
+Auto Save|自动保存
+Move To...|移动到...
+Rename...|重命名...
+Import...|导入...
+Export|导出
+HTML|HTML
+PDF|PDF
+Print|打印
+Preferences...|偏好设置...
+Close Tab|关闭标签页
+Close Window|关闭窗口
+Quit|退出
+&Help|帮助
+Quick Start...|快速入门...
+Markdown Reference...|Markdown 参考指南...
+Changelog...|更新日志...
+Donate via Open Collective...|通过 Open Collective 捐助我们...
+Feedback via Twitter...|在 Twitter 上和我们反馈...
+Report Issue or Request Feature...|反馈问题或功能建议...
+Website...|访问官网...
+Watch on GitHub...|在 GitHub 关注 MarkText...
+Follow us on Github...|在 Github 上关注我们...
+Follow us on Twitter...|在 Twitter 上关注我们...
+License...|许可协议...
+Check for updates...|检查更新...
+About MarkText...|关于 MarkText...
+MarkText|MarkText
+About MarkText|关于 MarkText
+Preferences|偏好设置
+Services|服务
+Hide MarkText|隐藏 MarkText
+Hide Others|隐藏其它
+Show All|显示全部
+Quit MarkText|退出 MarkText
+&View|视图
+Command Palette...|命令面板...
+Source Code Mode|源代码模式
+Typewriter Mode|打字机模式
+Focus Mode|专注模式
+Show Sidebar|显示侧边栏
+Show Tab Bar|显示标签栏
+Toggle Table of Contents|显示/隐藏目录
+Reload Images|重新加载图像
+Show Developer Tools|显示开发者工具
+Reload window|重新加载窗口
+&Window|窗口
+Minimize|最小化
+Always on Top|总在最前面
+Zoom In|放大
+Zoom Out|缩小
+Show in Full Screen|全屏显示
+Bring All to Front|前置全部窗口
+&Paragraph|段落
+Heading 1|标题 1
+Heading 2|标题 2
+Heading 3|标题 3
+Heading 4|标题 4
+Heading 5|标题 5
+Heading 6|标题 6
+Promote Heading|提升标题级别
+Demote Heading|降低标题级别
+Table|表格
+Code Fences|代码块
+Quote Block|引用块
+Math Block|数学公式块
+Html Block|Html块
+Ordered List|有序列表
+Bullet List|无序列表
+Task List|任务列表
+Loose List Item|松散列表项
+Paragraph|段落
+Horizontal Rule|水平线
+Front Matter|前文(Front Matter)
+F&ormat|格式
+Bold|粗体
+Italic|斜体
+Underline|下划线
+Superscript|上标
+Subscript|下标
+Highlight|高亮
+Inline Code|行内代码
+Inline Math|行内数学公式
+Strikethrough|删除线
+Hyperlink|超链接
+Image|图片
+Clear Formatting|清除格式
+&Theme|主题
+Open...|打开...
+Clear Recent|清空最近文件列表
