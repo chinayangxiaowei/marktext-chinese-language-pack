@@ -230,7 +230,7 @@ placeholder:"Image title"|placeholder:"图片标题"
 type:"edit",tooltip:"Edit Image"|type:"edit",tooltip:"编辑图片"
 type:"inline",tooltip:"Inline Image"|type:"inline",tooltip:"内联图片"
 type:"left",tooltip:"Align Left"|type:"left",tooltip:"左对齐"
-type:"center",tooltip:"Align Middle"|type:"center",tooltip:"剧中对齐"
+type:"center",tooltip:"Align Middle"|type:"center",tooltip:"居中对齐"
 type:"right",tooltip:"Align Right"|type:"right",tooltip:"右对齐"
 type:"delete",tooltip:"Remove Image"|type:"delete",tooltip:"删除图片"
 
